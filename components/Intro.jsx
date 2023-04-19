@@ -3,7 +3,7 @@ import Button from "@/components/Button";
 const Intro = () => {
 
     return (
-        <div>
+        <div className="my-8">
             <p>Hej, jag heter</p>
             <h1>Christoffer Gylin.</h1>
             <h2>Jag tycker om att bygga hemsidor och applikationer.</h2>
