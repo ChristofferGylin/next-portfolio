@@ -1,4 +1,6 @@
-import { createContext, useState } from "react";
+"use client"
+
+import { createContext, useContext, useState } from "react";
 import { type ReactNode } from "react";
 
 type LanguageContextType = {
@@ -6,9 +8,14 @@ type LanguageContextType = {
     language: 'en' | 'se'
 }
 
-export const LanguageContext = createContext<LanguageContextType | null>(null) 
+const defaultLanguageContext: LanguageContextType = {
+    cookieConsent: false,
+    language: 'en'
+}
 
-const Context = ({children}: { children: ReactNode}) => {
+export const LanguageContext = createContext<LanguageContextType>(defaultLanguageContext) 
+
+export const LanguageProvider = ({children}: { children: ReactNode}) => {
     const [cookieConsent, setCookieConsent] = useState<boolean | null>(null)
     const [language, setLanguage] = useState<'en' | 'se'>('en')
 
@@ -24,4 +31,4 @@ const Context = ({children}: { children: ReactNode}) => {
     )
 }
 
-export default Context
+export const useLanguageContext = () => useContext(LanguageContext)
