@@ -1,6 +1,7 @@
 "use client"
 
 import { useLanguageContext } from "@/contexts/Language"
+import { type AvailibleLanguages } from "@/types/language"
 import Link from "next/link"
 
 const texts = {
@@ -25,7 +26,7 @@ const Menu = () => {
 
     const content = language === 'en' ? texts.en : texts.sv
 
-    const onSetLanguage = (newLang: 'sv' | 'en') => {
+    const onSetLanguage = (newLang: AvailibleLanguages) => {
         languageSetter(newLang)
         console.log(language)
         // set cookie if consent
