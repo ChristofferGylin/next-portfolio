@@ -5,12 +5,17 @@ import { type ReactNode } from "react";
 
 type LanguageContextType = {
     cookieConsent: boolean | null;
-    language: 'en' | 'se'
+    cookieConsentSetter: (value: boolean) => void;
+    language: 'en' | 'se';
+    languageSetter: (selectedLanguage: 'en' | 'se') => void;
+    
 }
 
 const defaultLanguageContext: LanguageContextType = {
     cookieConsent: false,
-    language: 'en'
+    cookieConsentSetter: (value: boolean) => { },
+    language: 'en',
+    languageSetter: (selectedLanguage: 'en' | 'se') => { }
 }
 
 export const LanguageContext = createContext<LanguageContextType>(defaultLanguageContext) 
@@ -18,12 +23,22 @@ export const LanguageContext = createContext<LanguageContextType>(defaultLanguag
 export const LanguageProvider = ({children}: { children: ReactNode}) => {
     const [cookieConsent, setCookieConsent] = useState<boolean | null>(null)
     const [language, setLanguage] = useState<'en' | 'se'>('en')
+    
+    const cookieConsentSetter = (value: boolean) => {
+        setCookieConsent(value)
+    }
+
+    const languageSetter = (selectedLanguage: 'en' | 'se') => {
+        setLanguage(selectedLanguage)
+    }
 
     return (
         <LanguageContext.Provider
             value={{
                 cookieConsent,
-                language
+                cookieConsentSetter,
+                language,
+                languageSetter,
             }}
         >
             {children}
