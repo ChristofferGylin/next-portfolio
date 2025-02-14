@@ -1,5 +1,6 @@
 "use client"
 
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 import { createContext, useContext, useState } from "react";
 import { type ReactNode } from "react";
 
@@ -20,8 +21,8 @@ const defaultLanguageContext: LanguageContextType = {
 
 export const LanguageContext = createContext<LanguageContextType>(defaultLanguageContext) 
 
-export const LanguageProvider = ({children}: { children: ReactNode}) => {
-    const [cookieConsent, setCookieConsent] = useState<boolean | null>(null)
+export const LanguageProvider = ({children, consent}: { children: ReactNode, consent: RequestCookie | undefined }) => {
+    const [cookieConsent, setCookieConsent] = useState<boolean | null>(consent === undefined || consent.value !== 'true' ? null : true)
     const [language, setLanguage] = useState<'en' | 'se'>('en')
     
     const cookieConsentSetter = (value: boolean) => {
