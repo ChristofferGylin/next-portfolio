@@ -37,18 +37,18 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen grid grid-rows-[3rem_1fr_3rem]`}
       >
         <LanguageProvider consent={consent} cookieLanguage={language}>
-          <div className=" h-screen grid grid-rows-[3rem_1fr_3rem]">
           <Menu />
           <ModalProvider>
             <ModalContainer />
-            {children}
+            <main className="flex flex-col h-full">
+             {children}
+            </main>
           </ModalProvider>
           <Footer />
           <CookieConsent />
-          </div>
         </LanguageProvider>
         
       </body>
