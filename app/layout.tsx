@@ -4,6 +4,7 @@ import "./globals.css";
 import { LanguageProvider } from "@/contexts/Language";
 import ModalContainer from "@/components/ModalContainer";
 import CookieConsent from "@/components/CookieConsent";
+import { ModalProvider } from "@/contexts/Modal";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,9 +32,11 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider>
-          <ModalContainer />
           <CookieConsent />
-          {children}
+          <ModalProvider>
+            <ModalContainer />
+            {children}
+          </ModalProvider>
         </LanguageProvider>
       </body>
     </html>
