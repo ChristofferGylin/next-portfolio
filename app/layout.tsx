@@ -6,6 +6,8 @@ import ModalContainer from "@/components/ModalContainer";
 import CookieConsent from "@/components/CookieConsent";
 import { ModalProvider } from "@/contexts/Modal";
 import { cookies } from "next/headers";
+import Menu from "@/components/Menu";
+import Footer from "@/components/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,12 +39,19 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider consent={consent}>
-          <CookieConsent />
+          <div className=" h-screen grid grid-rows-[3rem_1fr_3rem]">
+          <Menu />
           <ModalProvider>
             <ModalContainer />
             {children}
           </ModalProvider>
+          <Footer />
+          </div>
+          
+          <CookieConsent />
+          
         </LanguageProvider>
+        
       </body>
     </html>
   );
