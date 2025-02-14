@@ -43,14 +43,14 @@ export default async function RootLayout({
           <Menu />
           <ModalProvider>
             <ModalContainer />
-            <main className="flex flex-col h-full">
-             {children}
+            <main className="flex flex-col h-full overflow-auto">
+              {children}
             </main>
           </ModalProvider>
           <Footer />
           <CookieConsent />
         </LanguageProvider>
-        
+
       </body>
     </html>
   );
