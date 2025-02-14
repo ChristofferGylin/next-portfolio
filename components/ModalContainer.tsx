@@ -1,14 +1,9 @@
-import { ReactNode } from "react"
+"use client"
 
-const ModalContainer = ({children}: { children: ReactNode}) => {
-
-    if (!children) {
-        return <></>
-    }
+const ModalContainer = () => {
 
     return (
-        <div className="fixed w-screen h-screen flex bg-blue-700">
-            {children}
+        <div className="z-40 fixed w-screen h-screen flex justify-center items-center bg-blue-700">       
         </div>
     )
 }

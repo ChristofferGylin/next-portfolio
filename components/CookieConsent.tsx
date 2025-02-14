@@ -17,7 +17,7 @@ const texts = {
 
 const CookieConsent = () => {
     
-    const { cookieConsent, language } = useLanguageContext()
+    const { cookieConsent, cookieConsentSetter, language } = useLanguageContext()
 
     if (cookieConsent !== null) {
         return <></>
@@ -26,14 +26,15 @@ const CookieConsent = () => {
     const content = language === 'en' ? texts.en : texts.sv
 
     const onAccept = () => {
-        // do stuff
+       cookieConsentSetter(true)
     }
     
     const onDecline = () => {
-        // do other stuff
+        cookieConsentSetter(false)
     }
     return (
-        <div className="self-end flex flex-col gap-2 justify-center align-center w-full h-fit p-8 m-2 rounded-xl border border-slate-300">
+        <div className="z-50 fixed w-screen h-screen flex bg-pink-700">
+            <div className="self-end flex flex-col gap-2 justify-center align-center w-full h-fit p-8 m-2 rounded-xl border border-slate-300">
             <p className="text-center text-lg">
                 {content.paragraph}
             </p>
@@ -46,6 +47,8 @@ const CookieConsent = () => {
                 </button>
             </div>
         </div>
+        </div>
+        
     )
 }
 

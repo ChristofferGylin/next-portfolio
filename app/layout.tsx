@@ -31,9 +31,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <LanguageProvider>
-          <ModalContainer>
-            <CookieConsent />
-          </ModalContainer>
+          <ModalContainer />
+          <CookieConsent />
           {children}
         </LanguageProvider>
       </body>
