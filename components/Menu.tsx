@@ -1,5 +1,6 @@
 "use client"
 
+import { setLanguageCookie } from "@/app/actions"
 import { useLanguageContext } from "@/contexts/Language"
 import { type AvailibleLanguages } from "@/types/language"
 import Link from "next/link"
@@ -28,8 +29,10 @@ const Menu = () => {
 
     const onSetLanguage = (newLang: AvailibleLanguages) => {
         languageSetter(newLang)
-        console.log(language)
-        // set cookie if consent
+        
+        if (cookieConsent) {
+            setLanguageCookie(newLang)
+        }
     }
 
     const languageIndicatorPosition = language === 'en' ? 'col-start-3' : ''

@@ -1,6 +1,6 @@
 "use client"
 
-import { setConsentCookie } from "@/app/actions"
+import { setConsentCookie, setLanguageCookie } from "@/app/actions"
 import { useLanguageContext } from "@/contexts/Language"
 
 const texts = {
@@ -29,6 +29,7 @@ const CookieConsent = () => {
     const onAccept = () => {
        cookieConsentSetter(true)
        setConsentCookie()
+       setLanguageCookie(language)
     }
     
     const onDecline = () => {

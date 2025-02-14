@@ -46,10 +46,8 @@ export default async function RootLayout({
             {children}
           </ModalProvider>
           <Footer />
-          </div>
-          
           <CookieConsent />
-          
+          </div>
         </LanguageProvider>
         
       </body>
