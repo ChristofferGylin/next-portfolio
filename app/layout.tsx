@@ -32,13 +32,14 @@ export default async function RootLayout({
 
   const cookieStore = await cookies()
   const consent = cookieStore.get('consent')
+  const language = cookieStore.get('language')
 
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <LanguageProvider consent={consent}>
+        <LanguageProvider consent={consent} cookieLanguage={language}>
           <div className=" h-screen grid grid-rows-[3rem_1fr_3rem]">
           <Menu />
           <ModalProvider>
