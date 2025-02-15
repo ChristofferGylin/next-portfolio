@@ -9,8 +9,8 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        background: "rgb(30, 29, 34)",
+        foreground: "@apply bg-slate-700",
       },
     },
   },
