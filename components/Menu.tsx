@@ -39,7 +39,7 @@ const Menu = () => {
 
     return (
         <header className="flex justify-between p-2 h-full border-b foreground">
-            <h1 className="text-2xl">CHRISTOFFER GYLIN</h1>
+            <span className="text-2xl">CHRISTOFFER GYLIN</span>
             <nav>
                 <ul className="flex justify-between gap-3">
                     <li><Link href='/'>{content.home}</Link></li>
@@ -54,7 +54,7 @@ const Menu = () => {
                             <button className="flex justify-center items-center" onClick={() => {onSetLanguage('en')}}>EN</button>
                         </div>
                         <div className="grid grid-cols-3 w-16">
-                            <div className={`w-full h-1.5 rounded-xl bg-cyan-400 transition-all duration-500 ${languageIndicatorPosition}`}></div>
+                            <div className={`w-full h-1 rounded-xl bg-cyan-400/80 transition-all duration-500 ${languageIndicatorPosition}`}></div>
                         </div>
                     </li>
                 </ul>
