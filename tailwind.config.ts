@@ -10,7 +10,6 @@ export default {
     extend: {
       colors: {
         background: "rgb(30, 29, 34)",
-        foreground: "@apply bg-slate-700",
       },
     },
   },

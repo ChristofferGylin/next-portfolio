@@ -18,6 +18,9 @@
   @apply rounded-xl border border-slate-400/70 shadow-lg shadow-slate-950/30 bg-slate-900/80 backdrop-blur-md;
 }
 
+.foreground {
+  @apply border-slate-400/50 bg-slate-700/50 backdrop-blur-md
+}
 body {
   color: var(--foreground);
   background: var(--background);

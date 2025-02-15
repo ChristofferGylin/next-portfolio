@@ -37,7 +37,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen grid grid-rows-[3rem_1fr_3rem] bg-slate-950/90`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen grid grid-rows-[3rem_1fr_3rem] bg-slate-950/90 text-slate-200`}
       >
         <LanguageProvider consent={consent} cookieLanguage={language}>
           <Menu />

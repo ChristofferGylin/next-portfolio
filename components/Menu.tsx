@@ -38,7 +38,7 @@ const Menu = () => {
     const languageIndicatorPosition = language === 'en' ? 'col-start-3' : ''
 
     return (
-        <header className="flex justify-between p-2 h-full bg-slate-700 border-b border-slate-400/50">
+        <header className="flex justify-between p-2 h-full border-b foreground">
             <h1>CHRISTOFFER GYLIN</h1>
             <nav>
                 <ul className="flex justify-between gap-3">
