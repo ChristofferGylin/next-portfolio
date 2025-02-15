@@ -39,7 +39,7 @@ const Menu = () => {
 
     return (
         <header className="flex justify-between p-2 h-full border-b foreground">
-            <h1>CHRISTOFFER GYLIN</h1>
+            <h1 className="text-2xl">CHRISTOFFER GYLIN</h1>
             <nav>
                 <ul className="flex justify-between gap-3">
                     <li><Link href='/'>{content.home}</Link></li>
