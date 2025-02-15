@@ -4,6 +4,9 @@ import { setLanguageCookie } from "@/app/actions"
 import { useLanguageContext } from "@/contexts/Language"
 import { type AvailibleLanguages } from "@/types/language"
 import Link from "next/link"
+import sweFlag from "@/public/flags/se.svg"
+import ukFlag from "@/public/flags/gb.svg"
+import ImageButton from "./UI/ImageButton"
 
 const texts = {
     en: {
@@ -49,9 +52,9 @@ const Menu = () => {
                     <li><Link href='/contact'>{content.contact}</Link></li>
                     <li>
                         <div className="grid grid-cols-3 w-16">
-                            <button className="flex justify-center items-center" onClick={() => {onSetLanguage('sv')}}>SV</button>
+                            <ImageButton src={sweFlag} alt='Change language to Swedish' callback={() => {onSetLanguage('sv')}} />
                             <p className="flex justify-center items-center">/</p>
-                            <button className="flex justify-center items-center" onClick={() => {onSetLanguage('en')}}>EN</button>
+                            <ImageButton src={ukFlag} alt='Change language to English' callback={() => {onSetLanguage('en')}} />
                         </div>
                         <div className="grid grid-cols-3 w-16">
                             <div className={`w-full h-1 rounded-xl bg-cyan-400/80 transition-all duration-500 ${languageIndicatorPosition}`}></div>
