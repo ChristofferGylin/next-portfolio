@@ -38,7 +38,7 @@ const Menu = () => {
         }
     }
 
-    const languageIndicatorPosition = language === 'en' ? 'col-start-3' : ''
+    const languageIndicatorPosition = language === 'en' ? 'translate-x-[34px]' : ''
 
     return (
         <header className="flex justify-between p-2 h-full border-b foreground">
@@ -50,14 +50,14 @@ const Menu = () => {
                     <li><Link href='/portfolio'>{content.portfolio}</Link></li>
                     <li><Link href='/cv'>{content.cv}</Link></li>
                     <li><Link href='/contact'>{content.contact}</Link></li>
-                    <li>
-                        <div className="grid grid-cols-3 w-16">
+                    <li className="flex flex-col items-center">
+                        <div className="flex justify-between w-[54px]">
                             <ImageButton src={sweFlag} alt='Change language to Swedish' callback={() => {onSetLanguage('sv')}} />
                             <p className="flex justify-center items-center">/</p>
                             <ImageButton src={ukFlag} alt='Change language to English' callback={() => {onSetLanguage('en')}} />
                         </div>
-                        <div className="grid grid-cols-3 w-16">
-                            <div className={`w-full h-1 rounded-xl bg-cyan-400/80 transition-all duration-500 ${languageIndicatorPosition}`}></div>
+                        <div className={`flex w-[60px]`}>
+                            <div className={`w-[26px] h-1 rounded-xl bg-cyan-400/80 transition-all duration-300 ease-in-out ${languageIndicatorPosition}`}></div>
                         </div>
                     </li>
                 </ul>
