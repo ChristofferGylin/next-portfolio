@@ -10,7 +10,7 @@ export type ImageButtonProps = {
 
 const ImageButton = ({ src, alt, size = 20, style = '', callback }: ImageButtonProps) => {
     return (
-        <button onClick={callback} className={`group/ButtonGroup flex justify-center items-center justify-self-center self-center h-fit aspect-square ${style}`}>
+        <button onClick={callback} className={`group/ButtonGroup flex justify-center items-center justify-self-center self-end h-fit aspect-square ${style}`}>
            <Image
             src={src}
             alt={alt}
