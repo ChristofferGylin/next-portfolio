@@ -4,6 +4,7 @@ import ukFlag from "@/public/flags/gb.svg"
 import { useLanguageContext } from "@/contexts/Language"
 import { AvailibleLanguages } from "@/types/language"
 import { setLanguageCookie } from "@/app/actions"
+import Indicator from "../UI/Indicator"
 
 const LanguageSelector = () => {
 
@@ -27,7 +28,7 @@ const LanguageSelector = () => {
                 <ImageButton src={ukFlag} alt='Change language to English' callback={() => {onSetLanguage('en')}} />
             </div>
             <div className={`flex w-[60px]`}>
-                <div className={`w-[26px] h-1 rounded-xl bg-cyan-400/80 transition-all duration-300 ease-in-out ${languageIndicatorPosition}`}></div>
+                <Indicator width="w-[26px]" style={languageIndicatorPosition} />
             </div>
         </div>
     )
