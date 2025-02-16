@@ -7,6 +7,7 @@ import Link from "next/link"
 import sweFlag from "@/public/flags/se.svg"
 import ukFlag from "@/public/flags/gb.svg"
 import ImageButton from "../UI/ImageButton"
+import MenuItem from "./MenuItem"
 
 const texts = {
     en: {
@@ -45,11 +46,11 @@ const Menu = () => {
             <span className="text-2xl">CHRISTOFFER GYLIN</span>
             <nav>
                 <ul className="flex justify-between gap-3">
-                    <li><Link href='/'>{content.home}</Link></li>
-                    <li><Link href='/about'>{content.about}</Link></li>
-                    <li><Link href='/portfolio'>{content.portfolio}</Link></li>
-                    <li><Link href='/cv'>{content.cv}</Link></li>
-                    <li><Link href='/contact'>{content.contact}</Link></li>
+                    <MenuItem href="/" title={content.home} highlighted />
+                    <MenuItem href="/about" title={content.about} />
+                    <MenuItem href="/portfolio" title={content.portfolio} />
+                    <MenuItem href="/cv" title={content.cv} />
+                    <MenuItem href="/contact" title={content.contact} />
                     <li className="flex flex-col items-center">
                         <div className="flex justify-between w-[54px]">
                             <ImageButton src={sweFlag} alt='Change language to Swedish' callback={() => {onSetLanguage('sv')}} />
