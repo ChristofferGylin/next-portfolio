@@ -1,5 +1,8 @@
+"use client"
+
 import Link from "next/link"
 import Indicator from "../UI/Indicator";
+import { usePathname } from "next/navigation";
 
 type MenuItemProps = {
     href: string;
@@ -8,6 +11,14 @@ type MenuItemProps = {
 }
 
 const MenuItem = ({ href, title, highlighted = false }: MenuItemProps) => {
+
+    const pathname = usePathname()
+
+    console.log(pathname)
+
+    if (pathname === href) {
+        highlighted = true
+    }
 
     return (
         <div className="menu-grid-rows">
