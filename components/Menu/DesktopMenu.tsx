@@ -10,7 +10,8 @@ const DesktopMenu = () => {
     const content = language === 'en' ? menuTitles.en : menuTitles.sv
 
     return (
-        <nav className="flex gap-6">
+        <nav className="hidden md:flex gap-6">
+                <LanguageSelector />
                 <ul className="flex justify-between gap-3">
                     <MenuItem href="/" title={content.home} />
                     <MenuItem href="/about" title={content.about} />
@@ -18,7 +19,6 @@ const DesktopMenu = () => {
                     <MenuItem href="/cv" title={content.cv} />
                     <MenuItem href="/contact" title={content.contact} />
                 </ul>
-                <LanguageSelector />
         </nav>
     )
 }

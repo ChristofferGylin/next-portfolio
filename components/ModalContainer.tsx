@@ -30,7 +30,7 @@ const ModalContainer = () => {
     
 
     return (
-        <div className="z-40 fixed w-screen h-screen flex justify-center items-center bg-white/5 backdrop-blur">
+        <div className="z-30 fixed w-screen h-screen flex justify-center items-center bg-white/5 backdrop-blur">
             <div ref={modalRef}>{modal}</div>
         </div>
     )

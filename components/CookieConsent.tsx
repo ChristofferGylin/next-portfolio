@@ -36,7 +36,7 @@ const CookieConsent = () => {
         cookieConsentSetter(false)
     }
     return (
-        <div className="z-50 fixed w-screen h-screen flex pointer-events-none">
+        <div className="z-40 fixed w-screen h-screen flex pointer-events-none">
             <div className="self-end flex flex-col gap-2 justify-center align-center w-full h-fit p-8 m-2 modal pointer-events-auto">
             <p className="text-center text-lg">
                 {content.paragraph}

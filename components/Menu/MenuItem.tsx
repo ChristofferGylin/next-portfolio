@@ -14,8 +14,6 @@ const MenuItem = ({ href, title, highlighted = false }: MenuItemProps) => {
 
     const pathname = usePathname()
 
-    console.log(pathname)
-
     if (pathname === href) {
         highlighted = true
     }
