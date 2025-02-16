@@ -21,7 +21,7 @@ const MobileMenu = () => {
         <nav className="flex md:hidden gap-3">
             <LanguageSelector />
             <IconButton Icon={visible ? IoClose : IoMenu} size="text-2xl" callback={toggleMenu}/>
-            <ul className={`z-50 fixed top-0 left-0 h-screen w-screen flex flex-col justify-start gap-1 foreground my-[3rem] ${!visible && 'hidden'}`}>
+            <ul className={`z-50 fixed top-0 right-0 h-screen flex flex-col justify-start gap-1 foreground border-l my-[3rem] transition-all duration-300 ${!visible ? 'w-0' : 'w-48'}`}>
                 <MenuItem href="/" title={content.home} />
                 <MenuItem href="/about" title={content.about} />
                 <MenuItem href="/portfolio" title={content.portfolio} />

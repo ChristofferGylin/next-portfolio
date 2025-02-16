@@ -19,9 +19,8 @@ const MenuItem = ({ href, title, highlighted = false }: MenuItemProps) => {
     }
 
     return (
-        <div className="menu-grid-rows">
-            <li className={`${!highlighted && 'hover:text-sky-100'} text-lg transition-all duration-300 h-[21px] ease-in-out row-start-2 justify-self-center self-start`}><Link href={href}>{title}</Link></li>
-            {highlighted && <div className="border-b border-sky-200 row-start-3 self-start"></div> }
+        <div className=" md:menu-grid-rows">
+            <li className={`${highlighted ? 'underline underline-offset-4' : 'hover:text-sky-100'}  text-lg transition-all duration-300 h-[21px] ease-in-out row-start-2 justify-self-center self-start`}><Link href={href}>{title}</Link></li>
         </div>
     )
 }
