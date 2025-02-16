@@ -29,6 +29,11 @@ h1 {
 .foreground {
   @apply border-slate-400/50 bg-slate-700/50 backdrop-blur-md
 }
+
+.menu-grid-rows {
+  @apply h-full grid grid-rows-[1fr_25px_1fr] gap-0.5
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
