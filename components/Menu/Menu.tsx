@@ -6,7 +6,7 @@ import { type AvailibleLanguages } from "@/types/language"
 import Link from "next/link"
 import sweFlag from "@/public/flags/se.svg"
 import ukFlag from "@/public/flags/gb.svg"
-import ImageButton from "./UI/ImageButton"
+import ImageButton from "../UI/ImageButton"
 
 const texts = {
     en: {
