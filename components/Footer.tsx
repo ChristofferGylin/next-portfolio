@@ -1,7 +1,7 @@
 const Footer = () => {
 
     return (
-        <footer className="flex justify-between p-2 h-full border-t foreground">
+        <footer className="z-30 flex justify-between p-2 h-full border-t foreground">
             <ul className="flex justify-between gap-2">
                 <li><a href="https://www.linkedin.com/in/christoffer-gylin">Li</a></li>
                 <li><a href="https://github.com/ChristofferGylin">GH</a></li>
