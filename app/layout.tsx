@@ -6,7 +6,7 @@ import ModalContainer from "@/components/ModalContainer";
 import CookieConsent from "@/components/CookieConsent";
 import { ModalProvider } from "@/contexts/Modal";
 import { cookies } from "next/headers";
-import Menu from "@/components/Menu";
+import Menu from "@/components/Menu/Menu";
 import Footer from "@/components/Footer";
 
 const geistSans = Geist({
