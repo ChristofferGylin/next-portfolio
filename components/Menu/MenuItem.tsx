@@ -20,8 +20,8 @@ const MenuItem = ({ href, title, highlighted = false, Icon }: MenuItemProps) => 
     }
 
     return (
-        <div className=" md:menu-grid-rows md:border-0 flex items-center p-2 border-b last:border-0 border-slate-400/10 w-48 md:w-fit">
-            <li className={`${highlighted ? 'underline underline-offset-4' : 'hover:text-sky-100'}  text-lg transition-all duration-300 md:h-[21px] ease-in-out row-start-2 justify-self-center self-start`}>
+        <div className="md:border-0 flex md:items-center md:justify-center p-2 border-b last:border-0 border-slate-400/10 h-full w-48 md:w-fit">
+            <li className={`${highlighted ? 'underline underline-offset-4' : 'hover:text-sky-100'}  text-lg transition-all duration-300 ease-in-out`}>
                 <Link href={href} className="flex gap-2 items-center">
                     {Icon && <Icon />}
                     {title}
