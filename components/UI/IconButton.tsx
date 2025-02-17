@@ -8,7 +8,7 @@ export type IconButtonProps = {
     style?: string;
 }
 
-const IconButton = ({ Icon, size = 'text-xl', color = 'text-glow text-cyan-200 stroke-cyan-200 group-hover/ButtonGroup:text-cyan-100 group-hover/ButtonGroup:stroke-cyan-100', style = '', callback }: IconButtonProps) => {
+const IconButton = ({ Icon, size = 'text-xl', color = 'text-sky-200 stroke-sky-200 group-hover/ButtonGroup:text-sky-50 group-hover/ButtonGroup:stroke-sky-50', style = '', callback }: IconButtonProps) => {
     return (
         <button onClick={callback} className={`group/ButtonGroup flex justify-center items-center justify-self-center self-center h-fit aspect-square ${style}`}>
             <Icon className={`${size} ${color}`} />
