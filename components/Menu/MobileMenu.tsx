@@ -11,7 +11,7 @@ import IconButton from "../UI/IconButton"
 const MobileMenu = () => {
 
     const { language } = useLanguageContext()
-    const [visible, setVisible] = useState(true)
+    const [visible, setVisible] = useState(false)
 
     const content = language === 'en' ? menuTitles.en : menuTitles.sv
 
