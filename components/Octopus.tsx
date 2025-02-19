@@ -53,7 +53,7 @@ const Octopus = () => {
       ctx.fillStyle = "#f3e3d3"
       // ctx.strokeStyle = "#0f1b55"
       ctx.beginPath()
-      ctx.arc(cx, cy, eyeballRadius + overlap, 0, Math.PI * 2)
+      ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
       ctx.fill()
       ctx.stroke()
       
@@ -74,7 +74,7 @@ const Octopus = () => {
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
       ctx.beginPath()
       eyes.forEach((eye) => {
-        ctx.arc(eye.cx, eye.cy, eye.eyeballRadius, 0, Math.PI * 2)
+        ctx.arc(eye.cx, eye.cy, eye.eyeballRadius + 1, 0, Math.PI * 2)
       })
       ctx.clip()
       eyes.forEach((eye) => drawEye(eye, mouseX, mouseY))
