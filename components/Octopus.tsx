@@ -46,7 +46,7 @@ const Octopus = () => {
       let pupilX = cx
       let pupilY = cy
       if (d > 0) {
-        let scale = Math.min((eyeballRadius + overlap - pupilRadius) / d, 1)
+        const scale = Math.min((eyeballRadius + overlap - pupilRadius) / d, 1)
         pupilX = cx + dx * scale
         pupilY = cy + dy * scale
       }
