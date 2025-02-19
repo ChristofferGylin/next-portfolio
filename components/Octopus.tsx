@@ -36,11 +36,13 @@ const Octopus = () => {
       const { cx, cy, eyeballRadius, pupilRadius } = eye
       
       // Vector to cursor
+
       let dx = mouseX - cx
       let dy = mouseY - cy
       let d = Math.sqrt(dx * dx + dy * dy)
 
       // Constrain pupil inside the eye
+
       let pupilX = cx
       let pupilY = cy
       if (d > 0) {
@@ -50,14 +52,15 @@ const Octopus = () => {
       }
       
       // Draw eyeball
+
       ctx.fillStyle = "#f3e3d3"
-      // ctx.strokeStyle = "#0f1b55"
       ctx.beginPath()
       ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
       ctx.fill()
       ctx.stroke()
       
       // Draw pupil
+      
       ctx.fillStyle = "#0f1b55"
       ctx.beginPath()
       ctx.arc(pupilX, pupilY, pupilRadius, 0, Math.PI * 2)
