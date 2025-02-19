@@ -49,6 +49,7 @@ const Octopus = () => {
       
       // Draw eyeball
       ctx.fillStyle = "#f3e3d3"
+      // ctx.strokeStyle = "#0f1b55"
       ctx.beginPath()
       ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
       ctx.fill()
