@@ -26,6 +26,8 @@ const Octopus = () => {
       { cx: 312, cy: 180, eyeballRadius: 27, pupilRadius: 16 },
     ]
 
+    const overlap = 5
+
     const image = new Image()
 
     image.src = "/octopus1.png"
@@ -42,7 +44,7 @@ const Octopus = () => {
       let pupilX = cx
       let pupilY = cy
       if (d > 0) {
-        let scale = Math.min((eyeballRadius - pupilRadius) / d, 1)
+        let scale = Math.min((eyeballRadius + overlap - pupilRadius) / d, 1)
         pupilX = cx + dx * scale
         pupilY = cy + dy * scale
       }
@@ -51,7 +53,7 @@ const Octopus = () => {
       ctx.fillStyle = "#f3e3d3"
       // ctx.strokeStyle = "#0f1b55"
       ctx.beginPath()
-      ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
+      ctx.arc(cx, cy, eyeballRadius + overlap, 0, Math.PI * 2)
       ctx.fill()
       ctx.stroke()
       
@@ -70,7 +72,15 @@ const Octopus = () => {
       
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
+      ctx.beginPath()
+      eyes.forEach((eye) => {
+        ctx.arc(eye.cx, eye.cy, eye.eyeballRadius, 0, Math.PI * 2)
+      })
+      ctx.clip()
       eyes.forEach((eye) => drawEye(eye, mouseX, mouseY))
+      ctx.beginPath()
+      ctx.rect(0, 0, canvas.width, canvas.height)
+      ctx.clip()
     }
 
     image.onload = () => {
