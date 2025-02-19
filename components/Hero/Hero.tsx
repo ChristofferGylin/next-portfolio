@@ -1,8 +1,8 @@
 "use client"
 
 import { useLanguageContext } from "@/contexts/Language"
-import GithubWidget from "./GithubWidget"
 import { aboutTexts } from "../About/aboutTexts"
+import Octopus from "../Octopus"
 
 const texts = {
     en: {
@@ -32,7 +32,7 @@ const Hero = () => {
                     {<p className="line-clamp-5">{bodyText[1]}..</p>}
                 </div>
             </div>
-            <GithubWidget />
+            <Octopus />
         </section>
     )
 }
