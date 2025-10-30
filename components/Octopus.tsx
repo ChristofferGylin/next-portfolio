@@ -3,21 +3,24 @@
 import { useEffect, useRef } from "react"
 
 type Eye = {
-  cx: number;
-  cy: number;
-  eyeballRadius: number;
-  pupilRadius: number;
+  cx: number
+  cy: number
+  eyeballRadius: number
+  pupilRadius: number
 }
 
 const Octopus = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
+  const imageRef = useRef<HTMLImageElement | null>(null)
+  const mouseRef = useRef({ x: 256, y: 256 }) // Start in center
+  const animationRef = useRef<number | null>(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext("2d")
     if (!ctx) return
-    
+
     canvas.width = 512
     canvas.height = 512
 
@@ -28,74 +31,87 @@ const Octopus = () => {
 
     const overlap = 5
 
-    const image = new Image()
-
-    image.src = "/octopus1.png"
+    const loadImage = (src: string) =>
+      new Promise<HTMLImageElement>((resolve) => {
+        if (imageRef.current) {
+          resolve(imageRef.current)
+          return
+        }
+        const img = new Image()
+        img.src = src
+        img.onload = () => {
+          imageRef.current = img
+          resolve(img)
+        }
+      })
 
     const drawEye = (eye: Eye, mouseX: number, mouseY: number) => {
-      const { cx, cy, eyeballRadius, pupilRadius } = eye
-      
-      // Vector to cursor
+  const { cx, cy, eyeballRadius, pupilRadius } = eye
+  const dx = mouseX - cx
+  const dy = mouseY - cy
+  const d = Math.sqrt(dx * dx + dy * dy)
 
-      const dx = mouseX - cx
-      const dy = mouseY - cy
-      const d = Math.sqrt(dx * dx + dy * dy)
+  let pupilX = cx
+  let pupilY = cy
+  if (d > 0) {
+    const scale = Math.min((eyeballRadius - pupilRadius) / d, 1)
+    pupilX = cx + dx * scale
+    pupilY = cy + dy * scale
+  }
 
-      // Constrain pupil inside the eye
+  // Clip both pupil and eyeball inside eyeball radius
+  ctx.save()
+  ctx.beginPath()
+  ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
+  ctx.clip()
 
-      let pupilX = cx
-      let pupilY = cy
-      if (d > 0) {
-        const scale = Math.min((eyeballRadius + overlap - pupilRadius) / d, 1)
-        pupilX = cx + dx * scale
-        pupilY = cy + dy * scale
-      }
-      
-      // Draw eyeball
+  // Draw eyeball
+  ctx.fillStyle = "#f3e3d3"
+  ctx.beginPath()
+  ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
+  ctx.fill()
+  ctx.stroke()
 
-      ctx.fillStyle = "#f3e3d3"
-      ctx.beginPath()
-      ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
-      ctx.fill()
-      ctx.stroke()
-      
-      // Draw pupil
+  // Draw pupil
+  ctx.fillStyle = "#0f1b55"
+  ctx.beginPath()
+  ctx.arc(pupilX, pupilY, pupilRadius, 0, Math.PI * 2)
+  ctx.fill()
 
-      ctx.fillStyle = "#0f1b55"
-      ctx.beginPath()
-      ctx.arc(pupilX, pupilY, pupilRadius, 0, Math.PI * 2)
-      ctx.fill()
-    }
+  ctx.restore()
+}
 
-    const updateEyes = (event: MouseEvent) => {
-      if (!canvas || !ctx) return
-      const rect = canvas.getBoundingClientRect()
-      const mouseX = event.clientX - rect.left
-      const mouseY = event.clientY - rect.top
-      
+
+    const render = () => {
+      if (!ctx || !imageRef.current) return
+
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      ctx.drawImage(image, 0, 0, canvas.width, canvas.height)
-      ctx.beginPath()
-      eyes.forEach((eye) => {
-        ctx.arc(eye.cx, eye.cy, eye.eyeballRadius + 1, 0, Math.PI * 2)
-      })
-      ctx.clip()
-      eyes.forEach((eye) => drawEye(eye, mouseX, mouseY))
-      ctx.beginPath()
-      ctx.rect(0, 0, canvas.width, canvas.height)
-      ctx.clip()
+      ctx.drawImage(imageRef.current, 0, 0, canvas.width, canvas.height)
+      eyes.forEach((eye) => drawEye(eye, mouseRef.current.x, mouseRef.current.y))
+
+      animationRef.current = requestAnimationFrame(render)
     }
 
-    image.onload = () => {
-      updateEyes({ clientX: 0 , clientY: 0 } as MouseEvent)
+    loadImage("/octopus1.png").then(() => {
+      render()
+    })
+
+    const handleMouseMove = (event: MouseEvent) => {
+      if (!canvas) return
+      const rect = canvas.getBoundingClientRect()
+      mouseRef.current.x = event.clientX - rect.left
+      mouseRef.current.y = event.clientY - rect.top
     }
 
-    window.addEventListener("mousemove", updateEyes)
-    
-    return () => window.removeEventListener("mousemove", updateEyes)
+    window.addEventListener("mousemove", handleMouseMove)
+
+    return () => {
+      window.removeEventListener("mousemove", handleMouseMove)
+      if (animationRef.current) cancelAnimationFrame(animationRef.current)
+    }
   }, [])
 
-  return <canvas ref={canvasRef} />
+  return <canvas ref={canvasRef} style={{ display: "block" }} />
 }
 
 export default Octopus
