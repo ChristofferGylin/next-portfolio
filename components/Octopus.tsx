@@ -46,41 +46,40 @@ const Octopus = () => {
       })
 
     const drawEye = (eye: Eye, mouseX: number, mouseY: number) => {
-  const { cx, cy, eyeballRadius, pupilRadius } = eye
-  const dx = mouseX - cx
-  const dy = mouseY - cy
-  const d = Math.sqrt(dx * dx + dy * dy)
+      const { cx, cy, eyeballRadius, pupilRadius } = eye
+      const dx = mouseX - cx
+      const dy = mouseY - cy
+      const d = Math.sqrt(dx * dx + dy * dy)
 
-  let pupilX = cx
-  let pupilY = cy
-  if (d > 0) {
-    const scale = Math.min((eyeballRadius - pupilRadius) / d, 1)
-    pupilX = cx + dx * scale
-    pupilY = cy + dy * scale
-  }
+      let pupilX = cx
+      let pupilY = cy
+      
+      if (d > 0) {
+        const scale = Math.min((eyeballRadius + overlap - pupilRadius) / d, 1)
+        pupilX = cx + dx * scale
+        pupilY = cy + dy * scale
+      }
 
-  // Clip both pupil and eyeball inside eyeball radius
-  ctx.save()
-  ctx.beginPath()
-  ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
-  ctx.clip()
+      // Draw eyeball
+      ctx.fillStyle = "#f3e3d3"
+      ctx.beginPath()
+      ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
+      ctx.fill()
+      ctx.stroke()
 
-  // Draw eyeball
-  ctx.fillStyle = "#f3e3d3"
-  ctx.beginPath()
-  ctx.arc(cx, cy, eyeballRadius, 0, Math.PI * 2)
-  ctx.fill()
-  ctx.stroke()
-
-  // Draw pupil
-  ctx.fillStyle = "#0f1b55"
-  ctx.beginPath()
-  ctx.arc(pupilX, pupilY, pupilRadius, 0, Math.PI * 2)
-  ctx.fill()
-
-  ctx.restore()
-}
-
+      // Draw pupil with clip to prevent white bleed
+      ctx.save()
+      ctx.beginPath()
+      ctx.arc(cx, cy, eyeballRadius + 1, 0, Math.PI * 2) // slightly larger than eyeball to allow overlap
+      ctx.clip()
+  
+      ctx.fillStyle = "#0f1b55"
+      ctx.beginPath()
+      ctx.arc(pupilX, pupilY, pupilRadius, 0, Math.PI * 2)
+      ctx.fill()
+  
+      ctx.restore()
+    }
 
     const render = () => {
       if (!ctx || !imageRef.current) return
