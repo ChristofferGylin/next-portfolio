@@ -2,7 +2,6 @@
 
 import { useLanguageContext } from "@/contexts/Language"
 import { aboutTexts } from "../About/aboutTexts"
-import Octopus from "../Octopus"
 
 const texts = {
     en: {
@@ -32,7 +31,6 @@ const Hero = () => {
                     {<p className="line-clamp-5">{bodyText[1]}..</p>}
                 </div>
             </div>
-            <Octopus />
         </section>
     )
 }
