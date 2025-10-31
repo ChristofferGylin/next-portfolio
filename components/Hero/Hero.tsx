@@ -32,7 +32,6 @@ const Hero = () => {
                     {<p className="line-clamp-5">{bodyText[1]}..</p>}
                 </div>
             </div>
-            <Octopus />
         </section>
     )
 }
