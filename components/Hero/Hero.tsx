@@ -2,7 +2,6 @@
 
 import { useLanguageContext } from "@/contexts/Language"
 import { aboutTexts } from "../About/aboutTexts"
-import Octopus from "../Octopus"
 
 const texts = {
     en: {
