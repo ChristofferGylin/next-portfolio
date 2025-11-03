@@ -7,11 +7,12 @@ const onctokit = new Octokit({
 export async function GET() {
 
     try {
-        const result = await onctokit.request("GET /repos/ChristofferGylin")
+        const repos = await onctokit.request("GET /user/repos")
 
-        console.log(result)
-        return result
+        console.log(repos)
+        return Response.json(repos) 
     } catch {
         console.log('Error')
+        return Response.json({error: 'Error'})
     }
 }
