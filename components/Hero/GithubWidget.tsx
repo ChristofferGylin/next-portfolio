@@ -8,7 +8,7 @@ const GithubWidget = () => {
     useEffect(() => {
         const fetchData = async () => {
 
-            const animationDuration = 5000
+            const animationDuration = 2000
 
             const res = await fetch('/api/github')
             const data: Record<string, number> = await res.json()
@@ -39,9 +39,19 @@ const GithubWidget = () => {
 
     return (
         <div className="w-full aspect-square border foreground rounded-xl flex justify-center items-center">
-            <ul>
+            <ul className="w-full p-4">
                 {Object.entries(languages).map(([key, value]) => {
-                return <li className="flex" key={key}>{key} {value}</li>
+                return (
+                    <li className="w-full flex justify-between" key={key}>
+                        <div className="w-full">
+                            <div className="w-full flex justify-between" >
+                                <span>{key}</span> <span>{value}%</span>
+                            </div>
+                            <div className="w-full h-6 flex justify-end">
+                                <div style={{width: `${value}%`}} className="bg-teal-400 h-6 rounded-xl"></div>
+                            </div>
+                        </div>
+                    </li>)
             })}
             </ul>
             
