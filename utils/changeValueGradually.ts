@@ -11,7 +11,9 @@ const changeValueGradually = ({startValue, endValue, startTime, duration, callba
 
         const difference = endValue - startValue
 
-        callback(difference * percent)
+        const value = Math.round(difference * percent)
+
+        callback(value)
 
         if (percent < 1) {
             changeValueGradually({startValue, endValue, startTime, duration, callback})

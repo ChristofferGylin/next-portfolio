@@ -1,3 +1,4 @@
+import changeValueGradually from "@/utils/changeValueGradually"
 import { useEffect, useState } from "react"
 
 const GithubWidget = () => {
@@ -6,16 +7,30 @@ const GithubWidget = () => {
 
     useEffect(() => {
         const fetchData = async () => {
+
+            const animationDuration = 5000
+
             const res = await fetch('/api/github')
             const data: Record<string, number> = await res.json()
 
             for (const lang in data) {
-                setLanguages((old) => {
-                    const newLanguages = {...old}
-                    newLanguages[lang] = data[lang]
+
+                changeValueGradually({
+                    startValue: 0,
+                    startTime: Date.now(),
+                    endValue: data[lang],
+                    duration: animationDuration,
+                    callback: (value) => {
+                        setLanguages((old) => {
+                            const newLanguages = {...old}
+                            newLanguages[lang] = value
                     
-                    return newLanguages
+                            return newLanguages
+                        })
+                    }
                 })
+
+                
             }
         }
 
@@ -24,7 +39,12 @@ const GithubWidget = () => {
 
     return (
         <div className="w-full aspect-square border foreground rounded-xl flex justify-center items-center">
-            <h1>Github</h1>
+            <ul>
+                {Object.entries(languages).map(([key, value]) => {
+                return <li className="flex" key={key}>{key} {value}</li>
+            })}
+            </ul>
+            
         </div>
     )
 }
