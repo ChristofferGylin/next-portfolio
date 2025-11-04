@@ -27,7 +27,7 @@ h1 {
 }
 
 .foreground {
-  @apply border-slate-400/30 bg-slate-700/50 backdrop-blur-md
+  @apply border-cyan-400/30 bg-slate-700/50 backdrop-blur-md
 }
 
 .menu-grid-rows {

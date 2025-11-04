@@ -2,6 +2,7 @@
 
 import { useLanguageContext } from "@/contexts/Language"
 import { aboutTexts } from "../About/aboutTexts"
+import GithubWidget from "./GithubWidget"
 
 const texts = {
     en: {
@@ -31,6 +32,7 @@ const Hero = () => {
                     {<p className="line-clamp-5">{bodyText[1]}..</p>}
                 </div>
             </div>
+            <GithubWidget />
         </section>
     )
 }
