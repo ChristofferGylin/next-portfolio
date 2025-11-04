@@ -10,11 +10,9 @@ type LanguagePercent = {
 const texts = {
     en: {
         heading: 'How I spend my time',
-        tagline: 'I like building things with code',
     },
     sv: {
         heading: 'Hur jag spenderar min tid',
-        tagline: 'Jag tycker om att bygga saker med kod',
     }
 }
 
