@@ -2,16 +2,21 @@ import { useEffect, useState } from "react"
 
 const GithubWidget = () => {
 
-    const [repoInfo, setRepoInfo] = useState<any>()
+    const [languages, setLanguages] = useState<Record<string, number>>({"TypeScript": 0, "JavaScript": 0, "HTML": 0, "C++": 0, "CSS": 0, "Other": 0})
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await fetch('/api/github')
-            const parsed = await data.json()
+            const res = await fetch('/api/github')
+            const data: Record<string, number> = await res.json()
 
-            console.log(parsed)
-            
-            setRepoInfo(parsed)
+            for (const lang in data) {
+                setLanguages((old) => {
+                    const newLanguages = {...old}
+                    newLanguages[lang] = data[lang]
+                    
+                    return newLanguages
+                })
+            }
         }
 
         fetchData()
