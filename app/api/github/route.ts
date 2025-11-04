@@ -23,6 +23,7 @@ export async function GET() {
                 return { languages: res.data };
             } catch (err) {
                 console.warn(`Failed to fetch languages for ${repo.full_name}`);
+                console.error(err)
                 return
             }
         })
@@ -39,7 +40,7 @@ export async function GET() {
             }
         }
 
-        let totalBytes = Object.values(languagesCalculated).reduce((acc, val) => acc + val, 0);
+        const totalBytes = Object.values(languagesCalculated).reduce((acc, val) => acc + val, 0);
 
         const languagePercentages: Record<string, number> = {}
 
