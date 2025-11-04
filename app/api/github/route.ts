@@ -39,24 +39,20 @@ export async function GET() {
             }
         }
 
-        const languagesSorted = Object.entries(languagesCalculated).sort((a, b) => b[1] - a[1])
+        let totalBytes = Object.values(languagesCalculated).reduce((acc, val) => acc + val, 0);
+        languagesCalculated.other = 0
 
-        let totalBytes = languagesSorted.reduce((sum, [, bytes]) => sum + bytes, 0)
-        let other = 0
+        const languagePercentages: Record<string, number> = {"other": 0}
 
-        const languagePercentages: [string, number][] = []
-
-        for (const lang of languagesSorted) {
-            const percent = lang[1] / totalBytes * 100
+        for (const lang in languagesCalculated) {
+            const percent = languagesCalculated[lang] / totalBytes * 100
 
             if (percent < 1) {
-                other += percent
+                languagePercentages.other += percent
             } else {
-                languagePercentages.push([lang[0], lang[1] / totalBytes * 100])
+                languagePercentages[lang] = percent
             } 
         }
-
-        languagePercentages.push(['Other', other])
 
         return Response.json(languagePercentages) 
     } catch {
