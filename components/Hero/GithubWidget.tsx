@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 
 const GithubWidget = () => {
 
-    const [languages, setLanguages] = useState<Record<string, number>>({"TypeScript": 0, "JavaScript": 0, "HTML": 0, "C++": 0, "CSS": 0, "Other": 0})
+    const [languages, setLanguages] = useState<Record<string, number>>({"TypeScript": 0, "JavaScript": 0, "HTML": 0, "C++": 0, "CSS": 0})
 
     useEffect(() => {
         const fetchData = async () => {

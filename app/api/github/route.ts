@@ -40,16 +40,13 @@ export async function GET() {
         }
 
         let totalBytes = Object.values(languagesCalculated).reduce((acc, val) => acc + val, 0);
-        languagesCalculated.other = 0
 
-        const languagePercentages: Record<string, number> = {"other": 0}
+        const languagePercentages: Record<string, number> = {}
 
         for (const lang in languagesCalculated) {
             const percent = languagesCalculated[lang] / totalBytes * 100
 
-            if (percent < 1) {
-                languagePercentages.other += percent
-            } else {
+            if (percent > 1) {
                 languagePercentages[lang] = percent
             } 
         }
