@@ -31,8 +31,11 @@ export default async function RootLayout({
 }>) {
 
   const cookieStore = await cookies()
-  const consent = cookieStore.get('consent')
-  const language = cookieStore.get('language')
+  const consentCookie = cookieStore.get('consent')
+  const languageCookie = cookieStore.get('language')
+
+  const consent = consentCookie === undefined ? null : consentCookie
+  const language = languageCookie === undefined ? null : languageCookie
 
   console.log('cookieStore:', cookieStore)
   console.log('consent:', consent)

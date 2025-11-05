@@ -22,12 +22,12 @@ const defaultLanguageContext: LanguageContextType = {
 
 export const LanguageContext = createContext<LanguageContextType>(defaultLanguageContext) 
 
-export const LanguageProvider = ({children, consent, cookieLanguage}: { children: ReactNode, consent: RequestCookie | undefined, cookieLanguage: RequestCookie | undefined }) => {
+export const LanguageProvider = ({children, consent, cookieLanguage}: { children: ReactNode, consent: RequestCookie | null, cookieLanguage: RequestCookie | null }) => {
     
-    const initLangauge = cookieLanguage === undefined ? 'en' : cookieLanguage.value
+    const initLangauge = cookieLanguage === null ? 'en' : cookieLanguage.value
     assertAvailibleLanguage(initLangauge)
     
-    const [cookieConsent, setCookieConsent] = useState<boolean | null>(consent === undefined || consent.value !== 'true' ? null : true)
+    const [cookieConsent, setCookieConsent] = useState<boolean | null>(consent === null || consent.value !== 'true' ? null : true)
     const [language, setLanguage] = useState<AvailibleLanguages>(initLangauge)
     
     const cookieConsentSetter = (value: boolean) => {
