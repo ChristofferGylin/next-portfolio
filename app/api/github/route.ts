@@ -1,5 +1,4 @@
 import batchFetch from "@/utils/batchFetch";
-import { NextApiRequest, NextApiResponse } from "next";
 import { Octokit } from "octokit";
 
 const octokit = new Octokit({
