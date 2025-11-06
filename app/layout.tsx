@@ -35,7 +35,7 @@ export default async function RootLayout({
   const consentCookie = cookieStore.get("consent")
   const languageCookie = cookieStore.get("language")
 
-  const consent = consentCookie?.value === "true"
+  const consent = !consentCookie ? null : true 
   const language = languageCookie === undefined ? "en" : languageCookie.value
 
   assertAvailibleLanguage(language)

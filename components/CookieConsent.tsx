@@ -20,7 +20,7 @@ const CookieConsent = () => {
     
     const { cookieConsent, cookieConsentSetter, language } = useLanguageContext()
 
-    if (cookieConsent !== null) {
+    if (cookieConsent != null) {
         return <></>
     }
 

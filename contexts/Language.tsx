@@ -21,9 +21,9 @@ const defaultLanguageContext: LanguageContextType = {
 
 export const LanguageContext = createContext<LanguageContextType>(defaultLanguageContext) 
 
-export const LanguageProvider = ({children, consent, cookieLanguage}: { children: ReactNode, consent: boolean, cookieLanguage: AvailibleLanguages }) => {
+export const LanguageProvider = ({children, consent, cookieLanguage}: { children: ReactNode, consent: boolean | null, cookieLanguage: AvailibleLanguages }) => {
     
-    const [cookieConsent, setCookieConsent] = useState<boolean>(consent)
+    const [cookieConsent, setCookieConsent] = useState<boolean | null>(consent)
     const [language, setLanguage] = useState<AvailibleLanguages>(cookieLanguage)
     
     const cookieConsentSetter = (value: boolean) => {
