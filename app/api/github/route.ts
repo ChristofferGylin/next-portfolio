@@ -6,15 +6,12 @@ const octokit = new Octokit({
 })
 
 export async function GET() {
-
-
     try {
         const repos = await octokit.request("GET /user/repos", {
             per_page: 20,
             visibility: "all",
             sort: "pushed",
             direction: "desc",
-            
         })
 
         const languagesFromRepos = await batchFetch(repos.data, 8, async (repo) => {
@@ -52,9 +49,17 @@ export async function GET() {
             } 
         }
 
-        return Response.json(languagePercentages) 
-    } catch {
-        console.log('Error')
-        return Response.json({error: 'Error'})
+        
+        
+        return new Response(JSON.stringify(languagePercentages), {
+            status: 200,
+            headers: {"Content-Type": "application/json"},
+        })
+    } catch (error) {
+        console.error(error) 
+        return new Response(JSON.stringify({error}), {
+            status: 500,
+            headers: {"Content-Type": "application/json"},
+        })
     }
 }
