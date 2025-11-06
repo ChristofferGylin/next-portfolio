@@ -30,6 +30,14 @@ const GithubWidget = () => {
             const animationDuration = 2000
 
             const res = await fetch('/api/github')
+
+            if (!res.ok) {
+                const data = await res.json()
+
+                console.error(data.error)
+                return
+            }
+
             const data: Record<string, number> = await res.json()
             
             for (const lang in data) {
