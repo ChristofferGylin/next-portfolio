@@ -8,6 +8,7 @@ import { ModalProvider } from "@/contexts/Modal";
 import { cookies } from "next/headers";
 import Menu from "@/components/Menu/Menu";
 import Footer from "@/components/Footer";
+import { assertAvailibleLanguage } from "@/types/language";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,15 +32,13 @@ export default async function RootLayout({
 }>) {
 
   const cookieStore = await cookies()
-  const consentCookie = cookieStore.get('consent')
-  const languageCookie = cookieStore.get('language')
+  const consentCookie = cookieStore.get("consent")
+  const languageCookie = cookieStore.get("language")
 
-  const consent = consentCookie === undefined ? null : consentCookie
-  const language = languageCookie === undefined ? null : languageCookie
+  const consent = consentCookie?.value === "true"
+  const language = languageCookie === undefined ? "en" : languageCookie.value
 
-  console.log('cookieStore:', cookieStore)
-  console.log('consent:', consent)
-  console.log('language:', language)
+  assertAvailibleLanguage(language)
 
   return (
     <html lang="en">
@@ -61,3 +60,4 @@ export default async function RootLayout({
     </html>
   );
 }
+

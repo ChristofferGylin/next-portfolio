@@ -1,3 +1,5 @@
+"use client"
+
 import { useLanguageContext } from "@/contexts/Language"
 import LanguageSelector from "./LanguageSelector"
 import MenuItem from "./MenuItem"
