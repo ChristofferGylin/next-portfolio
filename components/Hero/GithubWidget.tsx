@@ -31,8 +31,20 @@ const GithubWidget = () => {
 
             const res = await fetch('/api/github')
             const data: Record<string, number> = await res.json()
-
+            
             for (const lang in data) {
+
+                setLanguages((old) => {
+                    const newLanguages = {...old}
+
+                    if (!newLanguages[lang]) {
+                        newLanguages[lang] = {value: 0, displayValue: 0}
+                    }
+
+                    newLanguages[lang].value = data[lang]
+                    
+                    return newLanguages
+                })
 
                 changeValueGradually({
                     startValue: 0,
@@ -42,6 +54,7 @@ const GithubWidget = () => {
                     callback: (value) => {
                         setLanguages((old) => {
                             const newLanguages = {...old}
+
                             newLanguages[lang].displayValue = value
                     
                             return newLanguages
@@ -49,14 +62,6 @@ const GithubWidget = () => {
                     }
                 })
 
-                setLanguages((old) => {
-                    const newLanguages = {...old}
-                    newLanguages[lang].value = data[lang]
-                    
-                    return newLanguages
-                })
-
-                
             }
         }
 
