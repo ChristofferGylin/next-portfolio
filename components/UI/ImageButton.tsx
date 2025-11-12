@@ -15,6 +15,7 @@ const ImageButton = ({ src, alt, size = 20, style = '', callback }: ImageButtonP
             src={src}
             alt={alt}
             width={size}
+            height={size}
            />  
         </button>
     )
