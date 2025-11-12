@@ -3,7 +3,6 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation";
 import { ReactElement } from "react";
-import { IconType } from "react-icons";
 
 type MenuItemProps = {
     href: string;
